@@ -47,6 +47,5 @@ public class Boundaries : MonoBehaviour
         rCorner.transform.position = new Vector3(rightPoint.x, topPoint.y, 0);
         //L CORNER
         lCorner.transform.position = new Vector3(leftPoint.x, topPoint.y, 0);
-
     }
 }
