@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour {
     Rigidbody rb;
 
     public static float initialForce = 600f;
+    bool ballStarted;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +25,22 @@ public class Ball : MonoBehaviour {
         {
             brick.TakeDamage();
         }
+    }
+
+    public void StartBall()
+    {
+        if(!ballStarted)
+        {
+            rb.isKinematic = false;
+            rb.AddForce(new Vector3(initialForce, initialForce, 0));
+            ballStarted = true;
+            //PARENT BACK TO THE WORLD
+            transform.SetParent(transform.parent.parent);
+        }
+    } 
+
+    public bool BallStarted()
+    {
+        return ballStarted;
     }
 }

@@ -35,8 +35,7 @@ public class Paddle : MonoBehaviour
         sp.Open();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<BoxCollider>();
-
-        Resize(newSize);
+        ResetPaddle();
     }
 
     // Update is called once per frame
@@ -72,7 +71,7 @@ public class Paddle : MonoBehaviour
         }
     }
 
-        void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Ball"))
             {
@@ -92,7 +91,7 @@ public class Paddle : MonoBehaviour
             }
         }
 
-        void Resize(float xScale)
+    void Resize(float xScale)
         {
             Vector3 initScale = center.transform.localScale;
             initScale.x = xScale;
@@ -110,4 +109,11 @@ public class Paddle : MonoBehaviour
             colScale.x += 1.0f;
             col.size = colScale;
         }
+
+    public void ResetPaddle()
+    {
+        transform.position = new Vector3(Camera.main.transform.position.x, transform.position.y, 0);
+        Resize(newSize);
     }
+
+}
