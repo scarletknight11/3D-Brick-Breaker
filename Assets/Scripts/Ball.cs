@@ -6,7 +6,7 @@ public class Ball : MonoBehaviour {
 
     Rigidbody rb;
 
-    public static float initialForce = 600f;
+    public static float initialForce = 300f;
     bool ballStarted;
 
     // Start is called before the first frame update
@@ -32,7 +32,11 @@ public class Ball : MonoBehaviour {
         if(!ballStarted)
         {
             rb.isKinematic = false;
-            rb.AddForce(new Vector3(initialForce, initialForce, 0));
+            //CALCULATE X FORCE
+            float xDist = Camera.main.transform.position.x - transform.position.x;
+            Debug.Log(xDist);
+
+            rb.AddForce(new Vector3(xDist * 43, initialForce, 0));
             ballStarted = true;
             //PARENT BACK TO THE WORLD
             transform.SetParent(transform.parent.parent);

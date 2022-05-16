@@ -47,7 +47,7 @@ public class SCR_LevelEditor : Editor
             gridChanged = (newGridSize != gridSize.vector2IntValue);
 
             GUI.enabled = gridChanged && !wrongSize;
-            if (GUILayout.Button("Apply", EditorStyles.miniButton)) ;
+            if (GUILayout.Button("Apply", EditorStyles.miniButton))
             {
                 //CREATE OUR NEW CELLGRID
                 CreateGridCells(newGridSize);
