@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/eag/Demos/MoveCube/Scenes/eag_MainMenu.unity
+    guid: fbf6f51bf8de2b3459bde54e78e01866
+  - enabled: 1
+    path: Assets/Scenes/3D Brick Breaker.unity
+    guid: d54f94ed3919e7a46a6d215ff2e97d2c
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5f9974a7632e5a9438dc007c006a40a2, type: 2}

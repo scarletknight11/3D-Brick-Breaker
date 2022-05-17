@@ -6,24 +6,18 @@ using System.IO.Ports;
 
 public class Paddle : MonoBehaviour
 {
-
     public static Paddle instance;
-
     public GameObject center, leftCap, rightCap;
     Rigidbody rb;
     BoxCollider col;
-
     float speed = 10f;
     public float newSize = 2f;
-
     SerialPort sp;
-
 
     void Awake()
     {
         instance = this;
     }
-
 
     // Start is called before the first frame update
     void Start()
@@ -115,5 +109,4 @@ public class Paddle : MonoBehaviour
         transform.position = new Vector3(Camera.main.transform.position.x, transform.position.y, 0);
         Resize(newSize);
     }
-
 }

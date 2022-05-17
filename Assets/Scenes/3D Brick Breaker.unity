@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -879,6 +879,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1029666964415468726, guid: 30a32c582673ff7469191f286d76988d, type: 3}
+      propertyPath: center
+      value: 
+      objectReference: {fileID: 976903345}
+    - target: {fileID: 1029666964415468726, guid: 30a32c582673ff7469191f286d76988d, type: 3}
+      propertyPath: leftCap
+      value: 
+      objectReference: {fileID: 1589328965}
+    - target: {fileID: 1029666964415468726, guid: 30a32c582673ff7469191f286d76988d, type: 3}
+      propertyPath: rightCap
+      value: 
+      objectReference: {fileID: 2131210012}
     - target: {fileID: 8333059819834993577, guid: 30a32c582673ff7469191f286d76988d, type: 3}
       propertyPath: m_Name
       value: Paddle
@@ -943,8 +955,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightPaddleCap
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1029666964415468726, guid: 30a32c582673ff7469191f286d76988d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30a32c582673ff7469191f286d76988d, type: 3}
 --- !u!1 &8333059818163692235 stripped
 GameObject:
@@ -958,7 +969,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8333059818163692235}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f97e2b137b4cd749a9eeabf0f2b4ad8, type: 3}
   m_Name: 

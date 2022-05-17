@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using enableGame;
 
 public class Ball : MonoBehaviour {
 
     Rigidbody rb;
-
-    public static float initialForce = 300f;
+    public static egFloat initialForce;
     bool ballStarted;
+
+    void Awake()
+    {
+        VariableHandler.Instance.Register(ParameterStrings.STARTING_SPEED, initialForce);
+    }
 
     // Start is called before the first frame update
     void Start()
