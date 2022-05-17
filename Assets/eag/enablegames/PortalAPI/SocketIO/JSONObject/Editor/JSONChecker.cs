@@ -45,7 +45,6 @@ public class JSONChecker : EditorWindow {
 				GUILayout.Label("JSON fail:\n" + j.ToString(true));
 			else
 				GUILayout.Label("JSON success:\n" + j.ToString(true));
-
 		}
 	}
 }

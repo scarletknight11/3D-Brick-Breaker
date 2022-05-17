@@ -82,34 +82,20 @@
             },
 
             {
-                "min_": 1.0,
-                "max_": 10.0,
-                "value_": 1.0,
-                "tick_": 0.5,
+                "min_": 100.0,
+                "max_": 600.0,
+                "value_": 300.0,
+                "tick_": 50.0,
                 "name": "Player Starting Speed",
                 "alias": "Player Starting Speed",
                 "description": "Starting speed for the player",
                 "$type": "RangeParameter",
                 "$id": "7"
             }
-            {
-                "min_": -10.0,
-                "max_": -0.1,
-                "value_": -0.3,
-                "tick_": 0.1,
-                "name": "Gravity",
-                "alias": "Gravity",
-                "description": "Falling speed",
-                "$type": "RangeParameter",
-                "$id": "8"
-            }
 
         ]
     },
     "parameters": {
-        "Gravity": {
-            "$ref": "8"
-        },
         "Player Starting Speed": {
             "$ref": "7"
         },

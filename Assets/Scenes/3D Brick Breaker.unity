@@ -891,6 +891,10 @@ PrefabInstance:
       propertyPath: rightCap
       value: 
       objectReference: {fileID: 2131210012}
+    - target: {fileID: 1029666964415468726, guid: 30a32c582673ff7469191f286d76988d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8333059819834993577, guid: 30a32c582673ff7469191f286d76988d, type: 3}
       propertyPath: m_Name
       value: Paddle

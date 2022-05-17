@@ -34,6 +34,7 @@ public class egGame : MonoBehaviour {
 		PlayerPrefs.SetString(egParameterStrings.LAUNCHER_ADDRESS,networkAddress);
 		egAwake ();
 		//Physics.gravity = new Vector3 (0.0f, Gravity, 0.0f);
+		
 	}
 	
 	// Update is called once per frame

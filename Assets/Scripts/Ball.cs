@@ -6,7 +6,7 @@ using enableGame;
 public class Ball : MonoBehaviour {
 
     Rigidbody rb;
-    public static egFloat initialForce;
+    public static egFloat initialForce = 250f;
     bool ballStarted;
 
     void Awake()
