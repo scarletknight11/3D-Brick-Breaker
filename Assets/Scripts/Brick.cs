@@ -7,8 +7,6 @@ public class Brick : MonoBehaviour {
     public int health = 1;
     public int score = 50;
 
-    
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +25,8 @@ public class Brick : MonoBehaviour {
             GameManager.instance.RemoveBrick(this.gameObject);
             //REPORT TO THE SCORE MANAGER
             ScoreManager.instance.AddScore(score);
+            //DROP a POWER UP?
+            PowerUpManager.instance.DropPowwerUp(transform.position);
             //DESTROY BRICK
             Destroy(gameObject);
         }
