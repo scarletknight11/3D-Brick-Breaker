@@ -6436,6 +6436,7 @@ GameObject:
   - component: {fileID: 2096517656}
   - component: {fileID: 2096517658}
   - component: {fileID: 2096517657}
+  - component: {fileID: 2096517659}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -6506,6 +6507,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096517655}
   m_Mesh: {fileID: 5060444177187149915, guid: 85d4c25c8509e35449b60b67be3d9064, type: 3}
+--- !u!114 &2096517659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096517655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0c8b93b1d8eea4d953130a065e5f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.1
 --- !u!1 &2102822965
 GameObject:
   m_ObjectHideFlags: 0
