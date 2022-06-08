@@ -6,6 +6,7 @@ using System.IO.Ports;
 using System.Linq;
 using UnityEngine.Windows.Speech;
 using System;
+
 public class Paddle : MonoBehaviour
 {
     public static Paddle instance;
