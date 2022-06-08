@@ -22,7 +22,7 @@ public class PowerUpManager : MonoBehaviour
         if(percent <= dropChance)
         {
             int index = Random.Range(0, dropList.Count);
-            Instantiate(dropList[index], pos, Quaternion.identity);
+            Instantiate(dropList[index], pos, Quaternion.Euler(-90,0,-90));
 
         }
     }

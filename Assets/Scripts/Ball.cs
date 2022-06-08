@@ -28,7 +28,7 @@ public class Ball : MonoBehaviour {
         //if brick did not find gameobject we wanna collide with
         if (brick != null)
         {
-            brick.TakeDamage();
+            brick.TakeDamage(1);
         }
     }
 
@@ -51,5 +51,10 @@ public class Ball : MonoBehaviour {
     public bool BallStarted()
     {
         return ballStarted;
+    }
+
+    public void SetBall()
+    {
+        ballStarted = true;
     }
 }

@@ -14,9 +14,9 @@ public class Brick : MonoBehaviour {
         GameManager.instance.AddBrick(this.gameObject);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int amount)
     {
-        health--;
+        health -= amount;
         if(health <= 0)
         {
             //CREATE Particles

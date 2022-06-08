@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4592950208900358649}
   - component: {fileID: 4592950208900358648}
   - component: {fileID: 4592950208900358652}
+  - component: {fileID: 3120822690224385337}
   m_Layer: 0
   m_Name: Extent
-  m_TagString: Untagged
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,3 +114,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
+--- !u!114 &3120822690224385337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592950208900358651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4938615c43d3ba24ba0973d663cb1b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: 1

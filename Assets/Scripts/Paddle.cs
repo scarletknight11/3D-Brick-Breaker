@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.IO.Ports;
-
+using System.Linq;
+using UnityEngine.Windows.Speech;
+using System;
 public class Paddle : MonoBehaviour
 {
     public static Paddle instance;
@@ -11,6 +13,19 @@ public class Paddle : MonoBehaviour
     Rigidbody rb;
     BoxCollider col;
     float speed = 10f;
+
+    //SCALE
+    bool isScaling;
+
+    private KeywordRecognizer keywordRecognizer;
+    private Dictionary<string, Action> actions = new Dictionary<string, Action>();
+
+
+    //SHOOTING
+    bool isShooting;
+    public GameObject bulletPrefab;
+    public Transform LspawnPoint, RspawnPoint;
+
     public float newSize = 2f;
     SerialPort sp;
 
@@ -30,6 +45,37 @@ public class Paddle : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<BoxCollider>();
         ResetPaddle();
+
+        actions.Add("shoot", Shoot);
+
+
+        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
+        keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
+        keywordRecognizer.Start();
+    }
+
+    private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
+    {
+        Debug.Log(speech.text);
+        actions[speech.text].Invoke(); ;
+    }
+
+    public void Shoot()
+    {
+        Instantiate(bulletPrefab, RspawnPoint.position, RspawnPoint.rotation);
+        Instantiate(bulletPrefab, LspawnPoint.position, LspawnPoint.rotation);
+    }
+
+    void Update()
+    {
+        if(isShooting) //LASER EFFECT
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(bulletPrefab, RspawnPoint.position, RspawnPoint.rotation);
+                Instantiate(bulletPrefab, LspawnPoint.position, LspawnPoint.rotation);
+            }
+        }    
     }
 
     // Update is called once per frame
@@ -39,6 +85,11 @@ public class Paddle : MonoBehaviour
         if ((int)h == 0 && rb.velocity != Vector3.zero)
         {
             rb.velocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
+        else if((int)h != 0)
+        {
+            rb.isKinematic = false;
         }
         rb.MovePosition(transform.position + new Vector3(h, 0, 0).normalized * speed * Time.fixedDeltaTime);
 
@@ -85,28 +136,109 @@ public class Paddle : MonoBehaviour
             }
         }
 
-    void Resize(float xScale)
-        {
-            Vector3 initScale = center.transform.localScale;
-            initScale.x = xScale;
-            center.transform.localScale = initScale;
-
-            //LEFT CAP
-            Vector3 leftCapPos = new Vector3(center.transform.position.x - (xScale / 2), leftCap.transform.position.y, leftCap.transform.position.z);
-            leftCap.transform.position = leftCapPos;
-            //RIGHT CAP
-            Vector3 rightCapPos = new Vector3(center.transform.position.x + (xScale / 2), rightCap.transform.position.y, rightCap.transform.position.z);
-            rightCap.transform.position = rightCapPos;
-
-            //COLLIDER SCALE
-            Vector3 colScale = initScale;
-            colScale.x += 1.0f;
-            col.size = colScale;
-        }
 
     public void ResetPaddle()
     {
         transform.position = new Vector3(Camera.main.transform.position.x, transform.position.y, 0);
         Resize(newSize);
     }
+
+    //--------------------------RESIZE PADDLE ----------------------
+
+
+    void Resize(float xScale)
+    {
+        Vector3 initScale = center.transform.localScale;
+        initScale.x = xScale;
+        center.transform.localScale = initScale;
+
+        //LEFT CAP
+        Vector3 leftCapPos = new Vector3(center.transform.position.x - (xScale / 2), leftCap.transform.position.y, leftCap.transform.position.z);
+        leftCap.transform.position = leftCapPos;
+        //RIGHT CAP
+        Vector3 rightCapPos = new Vector3(center.transform.position.x + (xScale / 2), rightCap.transform.position.y, rightCap.transform.position.z);
+        rightCap.transform.position = rightCapPos;
+
+        //COLLIDER SCALE
+        Vector3 colScale = initScale;
+        colScale.x += 0.6f * 2;
+        col.size = colScale;
+    }
+
+
+    IEnumerator ResizePaddle(float goalSize, bool isShrinking)
+    {
+        if(isScaling)
+        {
+            yield break;
+        }
+
+        isScaling = true;
+        if(!isShrinking) //BACK TO NORMAL
+        {
+            //RESIZE TO NORMAL
+            StartCoroutine(ResizeToNormal());
+        }
+        if(goalSize > col.size.x) //INCREASE SIZE
+        {
+            float currentSize = col.size.x - 1.2f;
+            while(currentSize < goalSize)
+            {
+                currentSize += Time.deltaTime * 2;
+                Resize(currentSize);
+                yield return null;
+            }
+        }
+        else //DECREASE SIZE
+        {
+            float currentSize = col.size.x - 1.2f;
+            while (currentSize > goalSize)
+            {
+                currentSize -= Time.deltaTime * 2;
+                Resize(currentSize);
+                yield return null;
+            }
+        }
+        Resize(goalSize); //CORRECT THE LAST BIT
+
+
+        isScaling = false;
+
+    }
+
+    public void StartResizeBigger()
+    {
+        StartCoroutine(ResizePaddle(6, false));
+    }
+
+    public void StartResizeSmaller()
+    {
+        StartCoroutine(ResizePaddle(1, false));
+    }
+
+    IEnumerator ResizeToNormal()
+    {
+        yield return new WaitForSeconds(10);
+        StartCoroutine(ResizePaddle(newSize, true));
+    }
+
+    //------------------------LASER EFFECt
+    IEnumerator ShootingActive()
+    {
+        if(isShooting)
+        {
+            yield break;
+        }
+        isShooting = true;
+
+        yield return new WaitForSeconds(10f);
+
+        isShooting = false;
+    }
+
+    public void StartLaserEffect()
+    {
+        StartCoroutine(ShootingActive());
+    }
+
 }

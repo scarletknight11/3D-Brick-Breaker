@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using UnityEngine.Windows.Speech;
+using System;
+
 
 public class GameManager : MonoBehaviour {
 
@@ -11,6 +15,10 @@ public class GameManager : MonoBehaviour {
 
     List<GameObject> ballList = new List<GameObject>();
     List<GameObject> brickList = new List<GameObject>();
+
+    private KeywordRecognizer keywordRecognizer;
+    private Dictionary<string, Action> actions = new Dictionary<string, Action>();
+
 
     int lifes = 3;
     public Text lifesText;
@@ -22,6 +30,17 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         ResetGame();
+        actions.Add("launch", Launch);
+
+        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
+        keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
+        keywordRecognizer.Start();
+    }
+
+    private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
+    {
+        Debug.Log(speech.text);
+        actions[speech.text].Invoke(); ;
     }
 
     void ResetGame()
@@ -101,6 +120,14 @@ public class GameManager : MonoBehaviour {
         ballList[0].GetComponent<Ball>().StartBall();
     }
 
+    private void Launch()
+    {
+        if (ballList[0] != null && ballList[0].GetComponent<Ball>())
+        {
+            StartBall();
+        }
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space) && ballList.Count > 0)
@@ -110,5 +137,27 @@ public class GameManager : MonoBehaviour {
                 StartBall();
             }
         } 
+    }
+
+    public void Multiball()
+    {
+
+        int amount = 2; //HOW MANY BALLS PER ACTIVE BALL
+        int ballLimit = 12; //HOW MANY MAXIMUM BALLS IN BALL LIST
+        for (int i = ballList.Count-1; i >= 0; i--)
+        {
+            Vector3 ballPos = ballList[i].transform.position;
+            if(ballList.Count <= 12)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    GameObject newBall = Instantiate(ballPrefab, ballPos, Quaternion.identity);
+                    newBall.GetComponent<Rigidbody>().AddForce(Ball.initialForce, Ball.initialForce, 0);
+                    ballList.Add(newBall);
+                    newBall.GetComponent<Ball>().SetBall();
+                }
+            }
+            
+        }
     }
 }
