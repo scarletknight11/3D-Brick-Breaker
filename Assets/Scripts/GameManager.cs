@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour {
 
     void UpdateUI()
     {
-        lifesText.text = "Lifes: " + lifes.ToString("D2");
+        lifesText.text = lifes.ToString("D2");
     }
 
     //-------------------------LIFES------------------------
