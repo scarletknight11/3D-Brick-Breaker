@@ -104,7 +104,7 @@ public class Paddle : MonoBehaviour
                 //read the by tes that are sent from the Arduino and store them locally
                 int value = sp.ReadByte();
                 //maps input into unity cordinate system
-                float positionUnity = (21 - ((float)value / 5));
+                float positionUnity = (21f - ((float)value / 5f));
                 //moves position of bar object through exoskeleton control. Updates game object’s x-position with the new value at every frame
                 transform.position = new Vector3(positionUnity, transform.position.y,
                    transform.position.z);
