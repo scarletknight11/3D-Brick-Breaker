@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 992995729}
   - component: {fileID: 992995731}
   - component: {fileID: 992995730}
+  - component: {fileID: 992995732}
   m_Layer: 5
   m_Name: LevelLoaderBG
   m_TagString: Untagged
@@ -365,6 +366,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992995728}
   m_CullTransparentMesh: 1
+--- !u!114 &992995732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992995728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dc673f0ffab174281b682a4145ad25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels: {fileID: 1287674921392133493, guid: d63411e19936c0244918ff8ac77da8f9, type: 3}
+  levelsToLoad:
+  - 3DBrickBreaker
+  - 3DBrickBreaker2
+  grid: {fileID: 1282834149}
 --- !u!1 &1180944287
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,8 +503,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.27871335}
   m_AnchorMax: {x: 0.57600003, y: 0.5}
-  m_AnchoredPosition: {x: -25.3682, y: 41}
-  m_SizeDelta: {x: 464.6511, y: 406.9803}
+  m_AnchoredPosition: {x: -14.586001, y: 36.393986}
+  m_SizeDelta: {x: 685.0881, y: 456.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1282834150
 MonoBehaviour:
@@ -508,8 +526,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: a819761214dba1c4caf34aced8b64908, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -546,7 +564,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 110, y: 110}
+  m_CellSize: {x: 80, y: 80}
   m_Spacing: {x: 3, y: 3}
   m_Constraint: 0
   m_ConstraintCount: 2

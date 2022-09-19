@@ -19,9 +19,14 @@ public class GameManager : MonoBehaviour {
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
 
+    public GameObject winPanel;
+    public GameObject losePanel;
+
+    bool gameEnded;
 
     int lifes = 3;
     public Text lifesText;
+
     void Awake()
     {
         instance = this;    
@@ -29,6 +34,8 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
+        winPanel.SetActive(false);
+        losePanel.SetActive(false);
         ResetGame();
         actions.Add("launch", Launch);
 
@@ -64,12 +71,19 @@ public class GameManager : MonoBehaviour {
         UpdateUI();
 
         //LOSE CONDITION
-        if (lifes == 0)
+        if (lifes == 0 && !gameEnded)
         {
+            gameEnded = true;
+            losePanel.SetActive(false);
             print("Game OVER");
+            
             return;
         }
-        CreateBall();
+        if(!gameEnded)
+        {
+            CreateBall();
+        }
+       
         //RESET PADDLE POSITION
         Paddle.instance.ResetPaddle();
     }
@@ -80,7 +94,7 @@ public class GameManager : MonoBehaviour {
         Destroy(ball);
 
         //check how much life left
-        if(ballList.Count == 0)
+        if(ballList.Count == 0 && !gameEnded)
         {
             RemoveLife();
         }
@@ -97,8 +111,10 @@ public class GameManager : MonoBehaviour {
     {
         brickList.Remove(brick);
         //WINNING CONDITION
-        if(brickList.Count == 0)
+        if(brickList.Count == 0 && !gameEnded)
         {
+            gameEnded=true;
+            winPanel.SetActive(true);
             print("You Win");
         }
     }

@@ -10,12 +10,19 @@ public class LevelSettings : MonoBehaviour {
 
     public Transform grid;
 
-    public void LevelsLoaded()
+    void Start()
     {
-        for (int i = 1; i < levelsToLoad.Length; i++)
+        LevelsLoaded();
+    }
+
+    void LevelsLoaded()
+    {
+        for (int i = 0; i < levelsToLoad.Length; i++)
         {
             GameObject button = Instantiate(levels);
-            button.GetComponent<LevelButton>();
+            button.GetComponent<LevelButton>().ButtonText((i + 1).ToString(),levelsToLoad[i]);
+
+            button.transform.SetParent(grid, false);
         }
     }
 
