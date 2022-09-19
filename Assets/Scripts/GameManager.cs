@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour {
         if (lifes == 0 && !gameEnded)
         {
             gameEnded = true;
-            losePanel.SetActive(false);
+            losePanel.SetActive(true);
             print("Game OVER");
             
             return;
